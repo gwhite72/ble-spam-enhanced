@@ -1,0 +1,28 @@
+App(
+    appid="ble_spam_pro",
+    name="X-BLE Spam Pro",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="ble_spam_main",
+    stack_size=2 * 1024,
+    fap_category="Bluetooth",
+    fap_icon="icons/ble_spam_10px.png",
+    fap_author="@Claw-enhanced",
+    fap_version="2.0.0",
+    fap_description="Enhanced BLE spammer with multi-protocol support: Apple Continuity, Google Fast Pair, Samsung EasySetup, Microsoft SwiftPair, MDFE (小米/OPPO/Vivo), and NameFlood. Auto-cycle mode included.",
+    fap_weburl="https://github.com/your-repo/ble-spam-enhanced",
+    fap_additional_data={
+        "esp32_boost": true,
+        "max_devices": 200,
+        "protocols": [
+            "Apple Continuity",
+            "Google Fast Pair",
+            "Samsung EasySetup",
+            "Microsoft SwiftPair",
+            "MDFE",
+            "NameFlood"
+        ],
+    },
+)
+
+# Dependencies
+# Requires: gui, bt, extra_beacon, furi_hal_bt, furi_hal_random
