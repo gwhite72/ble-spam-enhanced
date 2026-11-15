@@ -1,0 +1,33 @@
+name: Build .fap
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: flipperdevices/flipperzero-ufbt:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: repo
+
+      - name: Build
+        run: |
+          cd ${{ github.workspace }}/repo/ble_spam_enhanced
+          ufbt build APPID=ble_spam_pro
+
+      - name: Find .fap
+        id: fap
+        run: |
+          FAP=$(find repo/ble_spam_enhanced -name "*.fap" -type f | head -1)
+          echo "fap_path=$FAP" >> $GITHUB_OUTPUT
+          echo "Found: $FAP"
+
+      - name: Upload .fap
+        uses: actions/upload-artifact@v4
+        with:
+          name: ble_spam_pro.fap
+          path: ${{ steps.fap.outputs.fap_path }}
